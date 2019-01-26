@@ -13,7 +13,7 @@
 <h3>参加者一覧</h3>
 <hr>
 <div class="col-xs-12" style="background-color:#dfd"><h4 style="">
-<a href="/"><button type="button" class="btn btn-primary">追加</button></a></h4></div>
+<a href="/member/regist"><button type="button" class="btn btn-primary">追加</button></a></h4></div>
 <table class="table">
 <tr style="background-color:#efe"><th>ID</th><th>ユーザ名</th><th>役割</th><th>生死</th><th></th></tr>
   <tr>

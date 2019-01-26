@@ -24,4 +24,14 @@ sub info {
     $self->render(template => 'member/info', users => $users );    
 }
 
+sub regist {
+    my $self = shift;
+    $self->render(template => 'member/regist');
+}
+
+sub regist_action {
+    my $self = shift;
+    $self->render(template => 'member/info');
+}
+
 1;

@@ -20,9 +20,9 @@ sub startup {
   # $r->get('/login')->to('auth#login');
   # $r->post('/login')->to('auth#login_action');
 
-  # $r->get('/member/info')->to('member#info');
-  # $r->get('/member/regist')->to('member#regist');
-  # $r->post('/member/regist')->to('member#regist_action');
+  $r->get('/member/info')->to('member#info');
+  $r->get('/member/regist')->to('member#regist');
+  $r->post('/member/regist')->to('member#regist_action');
   # $r->get('/member/edit')->to('member#edit');
   # $r->post('/member/edit')->to('member#edit_action');
 
