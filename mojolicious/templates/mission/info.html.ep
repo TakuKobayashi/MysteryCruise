@@ -3,16 +3,7 @@
 <div class="container-fluid">
 <div class="row">
 
-<div class="col-xs-12">
-  <ul class="nav nav-tabs">
-    <li class="">
-      <a href="/">参加者一覧</a>
-    </li>
-    <li class="active">
-      <a href="/mission/info">司令一覧</a>
-    </li>
-  </ul>
-</div>
+%= include 'include/menu', active => 'mission';
 
 <div class="container" style="max-width:960px;">
 <div class="row">

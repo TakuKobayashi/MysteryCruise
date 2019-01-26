@@ -22,4 +22,10 @@ sub info {
     $self->render(template => 'mission/info', missions => $missions );    
 }
 
+sub publish {
+    my $self = shift;
+
+    $self->render(template => 'mission/info', msg => "司令を配信しました");
+}
+
 1;
