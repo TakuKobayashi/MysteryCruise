@@ -72,16 +72,25 @@ wss.on('connection', function (ws) {
 });
 
 app.get('/notice', function (req, res) {
-  const missionObj = dataModel.findBy("missions", {
-    uuid: req.query('missionId')
+  let missionId = 0;
+  if (req.query.missionId) {
+    missionId = parseInt(req.query.missionId);
+  }
+  let missionObj = dataModel.findBy("missions", {
+    id: missionId,
   });
-  if (missionObj) {
+  if (missionObj && missionObj.is_published == 0) {
     connections.forEach(function (con, i) {
       con.send(JSON.stringify(
         Object.assign(missionObj, {
           action_name: "mission",
         })
       ));
+    });
+    missionObj = dataModel.update("missions", {
+      id: missionId
+    }, {
+      is_published: 1
     });
     res.json({
       success: true
