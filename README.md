@@ -37,3 +37,9 @@
   ]
 }
 ```
+
+# 司令を通知させたい時
+```
+http://localhost:8000/notice?missionId=[ミッションId]
+```
+でミッションIDを入れて、GetでHTTPリクエストしてください。
