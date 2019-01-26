@@ -25,7 +25,11 @@ sub publish {
 
     my $missions       = $data->{missions};
     my @missions_array = @{$missions};
-    push(@missions_array, {text => $mission, is_published => 0});
+
+    my $id = @missions_array;
+    $id += 1;
+
+    push(@missions_array, {id => $id, text => $mission, is_published => 0});
 
     $data->{missions} = [@missions_array];
 
