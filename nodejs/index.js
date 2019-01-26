@@ -1,23 +1,39 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 const uuid = require('uuid/v4');
 const url = require('url');
+const fs = require('fs');
+const bodyParser = require('body-parser');
 
+const commonDataJson = fs.readFileSync('../data.json');
+let commonData = JSON.parse(commonDataJson);
+
+const saveCommonDataJson = function () {
+  fs.writeFileSync(JSON.stringify(commonData));
+}
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 //use path static resource files
 app.use(express.static('public'));
 
-var port = process.env.PORT || 8000;
+// テンプレートエンジンの設定
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+
+const port = process.env.PORT || 8000;
 
 //wake up http server
-var http = require('http');
+const http = require('http');
 
 //Enable to receive requests access to the specified port
-var server = http.createServer(app).listen(port, function () {
+const server = http.createServer(app).listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
-var WebSocketServer = require('ws').Server;
-var wss = new WebSocketServer({
+const WebSocketServer = require('ws').Server;
+const wss = new WebSocketServer({
   server: server
 });
 
@@ -31,7 +47,7 @@ server.on('upgrade', (request, socket, head) => {
   }
 });
 
-var connections = [];
+const connections = [];
 wss.on('connection', function (ws) {
   console.log('connect!!');
   connections.push(ws);
@@ -50,11 +66,11 @@ wss.on('connection', function (ws) {
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.render('./index.ejs');
 });
 
 app.get('/chat', function (req, res) {
-  res.sendFile(__dirname + '/chat.html');
+  res.render('./chat.ejs');
 });
 
 app.post('/login', function (req, res) {
