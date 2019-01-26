@@ -31,5 +31,21 @@
     </tr>
   </table>
 </body>
+<script>
+  var xhr = new XMLHttpRequest();
+  // ハンドラの登録.
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200 || xhr.status == 304) {
+        var data = JSON.parse(xhr.responseText); // responseXML もあり
+        localStorage.setItem("user_uuid", data.uuid);
+      }
+      xhr.abort();
+    }
+  };
+  xhr.open('POST', '/sign_in', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send();
+</script>
 
 </html>

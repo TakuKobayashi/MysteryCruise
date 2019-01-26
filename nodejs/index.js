@@ -2,16 +2,13 @@ const express = require('express');
 const app = express();
 const uuid = require('uuid/v4');
 const url = require('url');
-const fs = require('fs');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
-const commonDataJson = fs.readFileSync('../data.json');
-let commonData = JSON.parse(commonDataJson);
+const DataModel = require('./data_model');
+const dataModel = new DataModel();
 
-const saveCommonDataJson = function () {
-  fs.writeFileSync(JSON.stringify(commonData));
-}
-
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -73,13 +70,26 @@ app.get('/chat', function (req, res) {
   res.render('./chat.ejs');
 });
 
-app.post('/login', function (req, res) {
-  const user_uuid = req.query("user_uuid");
-  if (!user_uuid) {
-    user_uuid = uuid();
-  }
-  res.cookie('user_uuid', user_uuid);
-  res.json({
-    user_uuid: user_uuid
+app.post('/sign_in', function (req, res) {
+  const user_uuid = req.cookies.user_uuid;
+  let userModel = dataModel.findBy("users", {
+    uuid: user_uuid
   });
+  if (userModel) {
+    userModel = dataModel.update("users", {
+      uuid: user_uuid
+    }, {
+      lastAccessedAt: new Date().getTime()
+    });
+  } else {
+    userModel = {
+      uuid: uuid(),
+      lastAccessedAt: new Date().getTime(),
+      createdAt: new Date().getTime(),
+    }
+    dataModel.create("users", userModel);
+  }
+  console.log(userModel);
+  res.cookie('user_uuid', userModel.uuid);
+  res.json(userModel);
 });
