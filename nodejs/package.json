@@ -10,13 +10,14 @@
   "private": false,
   "license": "MIT",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "ejs": "*",
     "express": "*",
     "glob": "*",
-    "underscore": "*",
-    "uuid": "*",
     "nodemon": "*",
     "npm": "*",
+    "underscore": "*",
+    "uuid": "*",
     "ws": "*"
   },
   "repository": {
