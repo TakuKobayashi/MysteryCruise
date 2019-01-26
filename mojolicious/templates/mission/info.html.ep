@@ -23,7 +23,7 @@
   <form method="POST" class="form-horizontal" action="/mission/publish" style="">
     <div class="form-group">
       <div class="col-xs-11" style="margin-top:10px"><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="司令内容を入力"></div>
-      <div class="col-cs-1"  ><button type="button" class="btn btn-info" style="margin-top:10px">配信</button></div>
+      <div class="col-cs-1"  ><button type="submit" class="btn btn-info" style="margin-top:10px">配信</button></div>
     </div>
   </form>
   </td>
