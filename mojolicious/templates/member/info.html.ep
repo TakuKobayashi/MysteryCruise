@@ -1,9 +1,48 @@
-% layout 'default';
-% title 'Member';
-<h2><%= $msg %></h2>
-<p>
-  This page was generated from the template "templates/member/info.html.ep"
-  and the layout "templates/layouts/default.html.ep",
-  <%= link_to 'click here' => url_for %> to reload the page or
-  <%= link_to 'here' => '/index.html' %> to move forward to a static page.
-</p>
+%= include 'include/header';
+
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-xs-12">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="/">参加者一覧</a>
+    </li>
+    <li class="">
+      <a href="/">司令一覧</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container" style="max-width:960px;">
+<div class="row">
+
+<div class="col-xs-12" style="padding-bottom:20px;background-color: #fff;">
+<div class="col-xs-12" style="background-color: #fff;">
+<h3>参加者一覧</h3>
+<hr>
+<div class="col-xs-12" style="background-color:#dfd"><h4 style="">
+<a href="/"><button type="button" class="btn btn-primary">追加</button></a></h4></div>
+<table class="table">
+<tr style="background-color:#efe"><th>ID</th><th>ユーザ名</th><th>役割</th><th>チーム</th><th>生死</th><th></th></tr>
+  <tr>
+    <td>1</td>
+    <td>user1</td>
+    <td>警察</td>
+    <td>警察</td>
+    <td>生存</td>
+    <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>user2</td>
+    <td>泥棒</td>
+    <td>泥棒</td>
+    <td>生存</td>
+    <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
+  </tr>
+</tr>
+</div>
+</div>
+
+%= include 'include/footer';

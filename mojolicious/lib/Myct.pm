@@ -26,7 +26,7 @@ sub startup {
   # $r->get('/member/edit')->to('member#edit');
   # $r->post('/member/edit')->to('member#edit_action');
 
-  # $r->get('/mission/info')->to('mission#info');
+  $r->get('/mission/info')->to('mission#info');
   # $r->get('/mission/regist')->to('mission#regist');
   # $r->post('/mission/regist')->to('mission#regist_action');
   # $r->get('/mission/edit')->to('mission#edit');
