@@ -15,11 +15,10 @@
 <div class="col-xs-12" style="background-color:#dfd"><h4 style="">
 <a href="/"><button type="button" class="btn btn-primary">追加</button></a></h4></div>
 <table class="table">
-<tr style="background-color:#efe"><th>ID</th><th>ユーザ名</th><th>役割</th><th>チーム</th><th>生死</th><th></th></tr>
+<tr style="background-color:#efe"><th>ID</th><th>ユーザ名</th><th>役割</th><th>生死</th><th></th></tr>
   <tr>
     <td>1</td>
     <td>user1</td>
-    <td>警察</td>
     <td>警察</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
@@ -27,7 +26,6 @@
   <tr>
     <td>2</td>
     <td>user2</td>
-    <td>泥棒</td>
     <td>泥棒</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
