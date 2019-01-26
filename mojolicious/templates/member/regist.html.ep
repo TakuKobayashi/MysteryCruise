@@ -8,12 +8,11 @@
 <div class="container" style="max-width:960px;">
 <div class="row">
 
-<div class="col-xs-12" style="padding-bottom:20px;background-color: #fff;">
-<div class="col-xs-12" style="background-color: #fff;">
-<h3>参加者追加</h3>
-<hr>
+<div class="col-xs-12" style="">
+<div class="col-xs-12" style="">
+<h1>参加者追加</h1>
 
-  <form method="POST" class="form-horizontal" action="/member/regist" style="padding-top:20px">
+  <form method="POST" class="form-horizontal" action="/member/regist" style="">
         <div class="form-group">
             <label class="control-label col-xs-4">ユーザ名</label>
             <div class="col-xs-5"><input type="text" name="name" class="form-control" value="" placeholder=""></div>
@@ -24,7 +23,7 @@
         </div>
         <div class="form-group">
             <div class="col-xs-offset-4 col-xs-8">
-               <button type="submit" class="btn btn-primary">参加者を追加する</button>
+               <button type="submit" class="btn btn-danger">参加者を追加する</button>
             </div>
         </div>
     </form>
