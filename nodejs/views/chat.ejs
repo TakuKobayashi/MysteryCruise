@@ -1,63 +1,98 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Websocketに接続して動作確認したい人のためのサイト【Websocket Connection Draft】</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Websocketを使ったリアルタイム通信の実装・調査・体験したい人のためのお試しいただけます">
-    <meta name="keywords" content="Websocket,Socket.io,Chat">
-    <meta name="robots" content="all">
-    <link rel="canonical" href="https://websocketserversample.au-syd.mybluemix.net/">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Websocket Connection Draft">
-    <meta property="og:description" content="Websocketを使ったリアルタイム通信の実装・調査・体験したい人のためのお試しいただけます!!">
-    <meta property="og:url" content="https://websocketserversample.au-syd.mybluemix.net/">
-    <meta property="og:site_name" content="Websocket Connection Draft">
-    <meta property="og:image" content="/images/websocket_icon.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="Websocketを使ったリアルタイム通信の実装・調査・体験したい人のためのお試しいただけます!!">
-    <meta name="twitter:title" content="Websocket Connection Draft">
-    <meta name="twitter:image" content="/images/websocket_icon.png">
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-      .plugin-java_script{
-        text-align: right;
-       }
-    </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-      var url = window.location.href
-      var host = window.document.location.host;
-      var ws;
-      if(url.startsWith("https://")){
-        ws = new WebSocket('wss://' + host);
-      }else{
-        ws = new WebSocket('ws://' + host);
-      }
-      $('form').submit(function(){
-        ws.send($('#m').val());
-        $('#m').val('');
-        return false;
-      });
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="/css/chat.css" />
+</head>
 
-      ws.onmessage = function (event) {
-         console.log(event);
-         $('#messages').append($('<li>').text(event.data));
-      };
-    </script>
-  </body>
+<body>
+  <header>
+    <div class="left">
+      <a href="/"><img src="/img/arrow-back.png" /></a>
+    </div>
+    <div class="right">
+      MyCTプレイヤーズチャット
+    </div>
+  </header>
+  <section id="chat">
+    <div class="scroll" id="chat_message_list_field"></div>
+  </section>
+  <section id="submit">
+    <form>
+      <div class=left>
+        <input id="chat_message_field" type="text" class="text">
+      </div>
+      <div class="right">
+        <input type="submit" class="button">
+      </div>
+    </form>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var url = window.location.href
+    var host = window.document.location.host;
+    var ws;
+    var cookie_strings = document.cookie.split(';');
+    var user_uuid_string = cookie_strings.find(function (cookie_string) {
+      var cookie_kv = cookie_string.split('=');
+      return cookie_kv[0] === "user_uuid";
+    });
+    var user_uuid = user_uuid_string.split("=")[1];
+    if (!user_uuid) {
+      user_uuid = localStorage.getItem("user_uuid");
+    }
+
+    var messages = [];
+
+    var appendMessage = function (messageObj) {
+      var messageDom = $('#chat_message_list_field');
+      if (messageObj.user_uuid === user_uuid) {
+        messageDom.append(
+          `<div class =\"bulb self\">
+            <div class=\"text\">
+              ${messageObj.text}
+            </div>
+          </div>`
+        );
+      } else {
+        messageDom.append(
+          `<div class =\"bulb others\">
+             <div class=\"icon\">
+              <img src=\"img/icon_sample.png\" />
+            </div>
+            <div class=\"text\">
+              ${messageObj.text}
+            </div>
+          </div>`
+        );
+      }
+      messages.push(messageObj);
+    };
+
+    for (var i = 0; i < messages.length; ++i) {
+      appendMessage(messages[i]);
+    }
+
+    if (url.startsWith("https://")) {
+      ws = new WebSocket('wss://' + host);
+    } else {
+      ws = new WebSocket('ws://' + host);
+    }
+    $('form').submit(function () {
+      var message = {
+        user_uuid: user_uuid,
+        text: $('#chat_message_field').val(),
+      }
+      ws.send(JSON.stringify(message));
+      $('#chat_message_field').val('');
+      return false;
+    });
+
+    ws.onmessage = function (event) {
+      var message = JSON.parse(event.data);
+      appendMessage(message);
+    };
+  </script>
+</body>
+
 </html>

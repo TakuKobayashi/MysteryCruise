@@ -44,7 +44,7 @@ server.on('upgrade', (request, socket, head) => {
   }
 });
 
-const connections = [];
+let connections = [];
 wss.on('connection', function (ws) {
   console.log('connect!!');
   connections.push(ws);
@@ -56,8 +56,11 @@ wss.on('connection', function (ws) {
   });
   ws.on('message', function (message) {
     console.log('message:', message);
+    const messageObj = JSON.parse(message);
+    messageObj.uuid = uuid();
+    dataModel.create("messages", messageObj);
     connections.forEach(function (con, i) {
-      con.send(message);
+      con.send(JSON.stringify(messageObj));
     });
   });
 });

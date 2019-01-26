@@ -1,0 +1,44 @@
+body {
+  box-sizing: border-box;
+}
+
+
+#home {
+  width: 100vw;
+  background-image: url('/img/background.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+#home .inner {
+  padding: 12vh 5vh;
+  overflow: scroll;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#home .logo {
+  width: 60%;
+  margin: auto;
+}
+
+#home img {
+  width: 100%;
+}
+
+#home .read {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 5vh;
+}
+
+#home .list {
+  max-width: 90%;
+  margin: auto;
+}
+
+#home a {
+  display: block;
+}
