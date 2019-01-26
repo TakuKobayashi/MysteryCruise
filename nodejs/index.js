@@ -60,9 +60,22 @@ wss.on('connection', function (ws) {
     messageObj.uuid = uuid();
     dataModel.create("messages", messageObj);
     connections.forEach(function (con, i) {
-      con.send(JSON.stringify(messageObj));
+      con.send(
+        JSON.stringify(
+          Object.assign(messageObj, {
+            action_name: "message",
+          })
+        )
+      );
     });
   });
+});
+
+app.get('/notificate', function (req, res) {
+  connections.forEach(function (con, i) {
+    con.send(JSON.stringify(messageObj));
+  });
+  res.json({});
 });
 
 app.get('/', function (req, res) {

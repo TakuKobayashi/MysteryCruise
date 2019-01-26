@@ -17,7 +17,6 @@
     </div>
   </header>
   <!-- 通知 -->
-  <!--
   <section id="notification">
     <div class="mask"></div>
     <div class="modal">
@@ -27,8 +26,7 @@
         </div>
         <div class="name">ゲームマスター</div>
       </div>
-      <div class="middle">
-        指令：◎◎せよ！
+      <div class="middle" id="mission_text">
       </div>
       <div class="bottom">
         <div href="" class="bottom_left">閉じる</div>
@@ -36,7 +34,6 @@
       </div>
     </div>
   </section>
-  -->
   <!-- 通知 -->
   <section id="chat">
     <div class="scroll" id="chat_message_list_field"></div>
@@ -64,6 +61,7 @@
     }
 
     var messages = [];
+    $("#notification").hide();
 
     var appendMessage = function (messageObj) {
       var messageDom = $('#chat_message_list_field');
@@ -111,8 +109,14 @@
     });
 
     ws.onmessage = function (event) {
-      var message = JSON.parse(event.data);
-      appendMessage(message);
+      var received_message_data = JSON.parse(event.data);
+      if (received_message_data.action_name === "message") {
+        appendMessage(received_message_data);
+      } else if (received_message_data.action_name === "mission") {
+        $("#mission_text").text("");
+        $("#mission_text").append(received_message_data.text);
+        $("#notification").show();
+      }
     };
   </script>
 </body>
