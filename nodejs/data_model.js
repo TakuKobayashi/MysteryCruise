@@ -34,9 +34,19 @@ const DataModel = function () {
         });
       });
     },
+    all: function (key) {
+      return commonData[key];
+    },
+    last: function (key, count = 1) {
+      const data = commonData[key];
+      if (count === 1) {
+        return data[data.length - 1];
+      } else {
+        return data.slice(Math.max(0, data.length - 1 - count), data.length - 1);
+      }
+    },
     update: function (key, filterArgs = {}, args = {}) {
       const updateObjects = commonData[key];
-      console.log(commonData);
       const filterArgKeys = Object.keys(filterArgs);
       let result = {}
       for (let i = 0; i < updateObjects.length; ++i) {

@@ -3,6 +3,8 @@
   <link rel="stylesheet" type="text/css" href="/css/reset.css" />
   <link rel="stylesheet" type="text/css" href="/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="/css/chat.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/notification.js"></script>
 </head>
 
 <body>
@@ -14,20 +16,39 @@
       MyCTプレイヤーズチャット
     </div>
   </header>
+  <!-- 通知 -->
+  <!--
+  <section id="notification">
+    <div class="mask"></div>
+    <div class="modal">
+      <div class="top">
+        <div class="icon">
+          <img src="img/icon_sample.png" />
+        </div>
+        <div class="name">ゲームマスター</div>
+      </div>
+      <div class="middle">
+        指令：◎◎せよ！
+      </div>
+      <div class="bottom">
+        <div href="" class="bottom_left">閉じる</div>
+        <a href="" class="bottom_right">表示</a>
+      </div>
+    </div>
+  </section>
+  -->
+  <!-- 通知 -->
   <section id="chat">
     <div class="scroll" id="chat_message_list_field"></div>
   </section>
   <section id="submit">
-    <form>
-      <div class=left>
-        <input id="chat_message_field" type="text" class="text">
-      </div>
-      <div class="right">
-        <input type="submit" class="button">
-      </div>
-    </form>
+    <div class=left>
+      <input id="chat_message_field" type="text" class="text">
+    </div>
+    <div class="right">
+      <input id="send_submit_button" type="submit" class="button">
+    </div>
   </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
     var url = window.location.href
     var host = window.document.location.host;
@@ -48,23 +69,24 @@
       var messageDom = $('#chat_message_list_field');
       if (messageObj.user_uuid === user_uuid) {
         messageDom.append(
-          `<div class =\"bulb self\">
-            <div class=\"text\">
-              ${messageObj.text}
-            </div>
-          </div>`
+          `<div class=\"bulb self\">
+             <div class=\"text\">
+               ${messageObj.text}
+             </div>
+           </div>`
         );
       } else {
         messageDom.append(
           `<div class =\"bulb others\">
              <div class=\"icon\">
-              <img src=\"img/icon_sample.png\" />
-            </div>
-            <div class=\"text\">
-              ${messageObj.text}
-            </div>
-          </div>`
+               <img src=\"img/icon_sample.png\" />
+             </div>
+             <div class=\"text\">
+               ${messageObj.text}
+             </div>
+           </div>`
         );
+
       }
       messages.push(messageObj);
     };
@@ -78,7 +100,7 @@
     } else {
       ws = new WebSocket('ws://' + host);
     }
-    $('form').submit(function () {
+    $('#send_submit_button').on("click", function () {
       var message = {
         user_uuid: user_uuid,
         text: $('#chat_message_field').val(),

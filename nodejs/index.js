@@ -70,7 +70,10 @@ app.get('/', function (req, res) {
 });
 
 app.get('/chat', function (req, res) {
-  res.render('./chat.ejs');
+  const messages = dataModel.last("messages", 20);
+  res.render('./chat.ejs', {
+    messages: messages
+  });
 });
 
 app.post('/sign_in', function (req, res) {
@@ -92,7 +95,6 @@ app.post('/sign_in', function (req, res) {
     }
     dataModel.create("users", userModel);
   }
-  console.log(userModel);
   res.cookie('user_uuid', userModel.uuid);
   res.json(userModel);
 });
