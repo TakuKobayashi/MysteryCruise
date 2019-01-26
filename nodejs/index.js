@@ -1,10 +1,12 @@
 var express = require('express');
 var app = express();
+const uuid = require('uuid/v4');
+const url = require('url');
 
 //use path static resource files
 app.use(express.static('public'));
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
 //wake up http server
 var http = require('http');
@@ -15,7 +17,19 @@ var server = http.createServer(app).listen(port, function () {
 });
 
 var WebSocketServer = require('ws').Server;
-var wss = new WebSocketServer({server:server});
+var wss = new WebSocketServer({
+  server: server
+});
+
+server.on('upgrade', (request, socket, head) => {
+  const pathname = url.parse(request.url).pathname;
+
+  if (pathname === '/chat') {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+      wss.emit('connection', ws);
+    });
+  }
+});
 
 var connections = [];
 wss.on('connection', function (ws) {
@@ -35,6 +49,21 @@ wss.on('connection', function (ws) {
   });
 });
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/chat', function (req, res) {
+  res.sendFile(__dirname + '/chat.html');
+});
+
+app.post('/login', function (req, res) {
+  const user_uuid = req.query("user_uuid");
+  if (!user_uuid) {
+    user_uuid = uuid();
+  }
+  res.cookie('user_uuid', user_uuid);
+  res.json({
+    user_uuid: user_uuid
+  });
 });
