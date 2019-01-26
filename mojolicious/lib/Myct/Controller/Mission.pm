@@ -35,7 +35,16 @@ sub publish {
     my $bytes  = $path->slurp;
     my $data   = decode_json $bytes;
 
-    $self->flash(msg => "司令を配信しました $bytes");
+    my $missions       = $data->{missions};
+    my @missions_array = @{$missions};
+    push(@missions_array, {text => $mission});
+
+    $data->{missions} = [@missions_array];
+
+    my $json = encode_json $data;
+    $path = $path->spurt($json);
+
+    $self->flash(msg => "司令を配信しました");
     $self->redirect_to('/mission/info');
 }
 
