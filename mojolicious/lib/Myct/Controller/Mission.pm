@@ -8,18 +8,6 @@ sub info {
     my $msg  = $self->flash('msg') or '';
 
     my $missions = [
-        {
-            id   => 1,
-            text => '明石海峡大橋を通過しました。',
-            time => '11:50',
-            is_publish => '1',
-        },
-        {
-            id   => 2,
-            text => '瀬戸内海を通過中です',
-            time => '13:50',
-            is_publish => '0',
-        },
     ];
 
     $self->render(template => 'mission/info', missions => $missions, msg => $msg );    
@@ -44,7 +32,7 @@ sub publish {
     my $json = encode_json $data;
     $path = $path->spurt($json);
 
-    $self->flash(msg => "司令を配信しました");
+    $self->flash(msg => "指令を配信しました");
     $self->redirect_to('/mission/info');
 }
 
