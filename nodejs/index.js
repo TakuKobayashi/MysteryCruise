@@ -71,11 +71,26 @@ wss.on('connection', function (ws) {
   });
 });
 
-app.get('/notificate', function (req, res) {
-  connections.forEach(function (con, i) {
-    con.send(JSON.stringify(messageObj));
+app.get('/notice', function (req, res) {
+  const missionObj = dataModel.findBy("missions", {
+    uuid: req.query('missionId')
   });
-  res.json({});
+  if (missionObj) {
+    connections.forEach(function (con, i) {
+      con.send(JSON.stringify(
+        Object.assign(missionObj, {
+          action_name: "mission",
+        })
+      ));
+    });
+    res.json({
+      success: true
+    });
+  } else {
+    res.json({
+      success: false
+    });
+  }
 });
 
 app.get('/', function (req, res) {
