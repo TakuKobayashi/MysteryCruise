@@ -14,15 +14,15 @@
 % if ( $msg ) {
 <div class="alert alert-success" role="alert"><%= $msg %></div>
 % }
-<h3>司令一覧</h3>
+<h3>指令一覧</h3>
 
-<div class="col-xs-12" style="background-color:#dfd"><h4 style="">司令を出す</h4></div>
+<div class="col-xs-12" style="background-color:#dfd"><h4 style="">指令を出す</h4></div>
 <table class="table">
 <tr>
   <td>
   <form method="POST" class="form-horizontal" action="/mission/publish" style="">
     <div class="form-group">
-      <div class="col-xs-11" style="margin-top:10px"><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="司令内容を入力"></div>
+      <div class="col-xs-11" style="margin-top:10px"><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="内容を入力"></div>
       <div class="col-cs-1"  ><button type="submit" class="btn btn-info" style="margin-top:10px">配信</button></div>
     </div>
   </form>
@@ -32,7 +32,7 @@
 
 <hr>
 <div class="col-xs-12" style="background-color:#dfd"><h4 style="">
-<a href="/"><button type="button" class="btn btn-primary">追加</button></a> 定時司令を登録する</h4></div>
+<a href="/"><button type="button" class="btn btn-primary">追加</button></a> 定時の指令を登録する</h4></div>
 <table class="table">
 <tr style="background-color:#efe"><th>ID</th><th>内容</th><th>配信時間</th><th></th><th></th></tr>
   <tr>

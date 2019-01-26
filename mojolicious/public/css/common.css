@@ -1,4 +1,53 @@
-body {
-    background: url("../img/background.jpg") center center /cover;
-    background-attachment: fixed;
+body {}
+
+#nav {
+    background-color:#262626;
+    border-radius:0;
+}
+.nav-tabs {
+    border-bottom:1px solid #3f3f3f
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    border:none;
+}
+
+.nav-tabs>li.active>a {
+    color:#fff;
+    background-color:#3a3a3a;
+    border:none;
+}
+
+.nav-tabs>li>a {
+    color:#fff;
+    border:none;
+}
+
+.nav-tabs>li:hover>a {
+    color:#555;
+    border:none;
+}
+
+.nav>li>a {
+    padding: 15px;
+}
+
+.btn-danger {
+    background-image:none;
+    background-color:#6d2823;
+    border:none;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding:15px;
+    border-top:none;
+    vertical-align:initial;
+}
+
+td,th {
+    text-align:center;
+}
+
+th {
+    background-color:#ccc;
 }

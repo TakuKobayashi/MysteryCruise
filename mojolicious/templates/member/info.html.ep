@@ -8,27 +8,40 @@
 <div class="container" style="max-width:960px;">
 <div class="row">
 
-<div class="col-xs-12" style="padding-bottom:20px;background-color: #fff;">
-<div class="col-xs-12" style="background-color: #fff;">
-<h3>参加者一覧</h3>
-<hr>
-<div class="col-xs-12" style="background-color:#dfd"><h4 style="">
-<a href="/member/regist"><button type="button" class="btn btn-primary">追加</button></a></h4></div>
-<table class="table">
-<tr style="background-color:#efe"><th>ID</th><th>ユーザ名</th><th>役割</th><th>生死</th><th></th></tr>
+<div class="col-xs-12" style="">
+<div class="col-xs-12" style="">
+<h1>参加者一覧</h1>
+<div class="col-xs-12" style=""><h4 style="">
+<a href="/member/regist"><button type="button" class="btn btn-danger">追加</button></a></h4></div>
+<table class="table table-striped">
+<tr style=""><th>ID</th><th>ユーザ名</th><th>役割</th><th>生死</th><th></th></tr>
   <tr>
     <td>1</td>
     <td>user1</td>
     <td>警察</td>
     <td>生存</td>
-    <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
     <td>2</td>
     <td>user2</td>
     <td>泥棒</td>
     <td>生存</td>
-    <td><a href="/"><button type="button" class="btn btn-info">編集</button></a></td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>user2</td>
+    <td>泥棒</td>
+    <td>生存</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>user2</td>
+    <td>泥棒</td>
+    <td>生存</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
 </tr>
 </div>

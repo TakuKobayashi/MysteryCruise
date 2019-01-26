@@ -1,10 +1,10 @@
-<div class="col-xs-12">
+<div id="nav" class="col-xs-12">
   <ul class="nav nav-tabs">
     <li class="<%= $active eq 'member' ? 'active' : '' %>">
       <a href="/">参加者一覧</a>
     </li>
     <li class="<%= $active eq 'mission' ? 'active' : '' %>">
-      <a href="/mission/info">司令一覧</a>
+      <a href="/mission/info">指令一覧</a>
     </li>
   </ul>
 </div>
