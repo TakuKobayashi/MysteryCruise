@@ -2,6 +2,7 @@ package Myct::Controller::Mission;
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::File;
 use Mojo::JSON qw(encode_json decode_json);
+use Mojo::UserAgent;
 
 sub info {
     my $self = shift;
@@ -35,6 +36,11 @@ sub publish {
 
     my $json = encode_json $data;
     $path = $path->spurt($json);
+
+    eval {
+    my $ua  = Mojo::UserAgent->new;
+    my $res = $ua->get("http://localhost:8000/notice?missionId=$id")->result;
+    };
 
     $self->flash(msg => "指令を配信しました");
     $self->redirect_to('/mission/info');

@@ -56,3 +56,7 @@ td,th {
 th {
     background-color:#ccc;
 }
+
+td.mission {
+    text-align:left;
+}
