@@ -11,73 +11,73 @@
 </head>
 
 <body>
+  <section id="home"></select>
+    <video autoplay playsinline="true"></video>
+    <div style="display:none">
+      <canvas id="canvas"></canvas>
+    </div>
 
-</body>
-<video autoplay playsinline="true"></video>
-<div style="display:none">
-  <canvas id="canvas"></canvas>
-</div>
+    <script>
+      var host = window.document.location.host;
+      var video = document.querySelector('video');
+      var canvas = document.getElementById("canvas");
 
-<script>
-  var host = window.document.location.host;
-  var video = document.querySelector('video');
-  var canvas = document.getElementById("canvas");
-
-  var cookie_strings = document.cookie.split(';');
-  var user_uuid_string = cookie_strings.find(function (cookie_string) {
-    var cookie_kv = cookie_string.split('=');
-    return cookie_kv[0] === "user_uuid";
-  });
-  var user_uuid = user_uuid_string.split("=")[1];
-  if (!user_uuid) {
-    user_uuid = localStorage.getItem("user_uuid");
-  }
-  var scannedUrls = [];
-
-  video.addEventListener("loadedmetadata", function (e) {
-    //canvasにカメラの映像のサイズを設定
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    //getContextで描画先を取得
-    var ctx = canvas.getContext("2d");
-    //毎フレームの実行処理
-    setInterval(function (e) {
-      //videoタグの描画をコンテキストに描画
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const code = jsQR(imageData.data, canvas.width, canvas.height);
-      console.log(code);
-      if (code && !scannedUrls.includes(code.data)) {
-        $.ajax({
-          type: "POST",
-          url: "/call_location",
-          dataType: "json",
-          data: {
-            userUuid: user_uuid,
-          },
-          success: function (message) {
-            console.log(message);
-          }
-        });
-        scannedUrls.push(code.data);
+      var cookie_strings = document.cookie.split(';');
+      var user_uuid_string = cookie_strings.find(function (cookie_string) {
+        var cookie_kv = cookie_string.split('=');
+        return cookie_kv[0] === "user_uuid";
+      });
+      var user_uuid = user_uuid_string.split("=")[1];
+      if (!user_uuid) {
+        user_uuid = localStorage.getItem("user_uuid");
       }
-    }, 33);
-  });
-  // Not showing vendor prefixes.
-  navigator.getUserMedia({
-    video: true,
-    audio: false
-  }, function (stream) {
-    console.log(stream);
-    video.srcObject = stream;
+      var scannedUrls = [];
 
-    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
-    // See crbug.com/110938.
+      video.addEventListener("loadedmetadata", function (e) {
+        //canvasにカメラの映像のサイズを設定
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
 
-  }, function (e) {
-    console.log('Reeeejected!', e);
-  });
-</script>
+        //getContextで描画先を取得
+        var ctx = canvas.getContext("2d");
+        //毎フレームの実行処理
+        setInterval(function (e) {
+          //videoタグの描画をコンテキストに描画
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const code = jsQR(imageData.data, canvas.width, canvas.height);
+          console.log(code);
+          if (code && !scannedUrls.includes(code.data)) {
+            $.ajax({
+              type: "POST",
+              url: "/call_location",
+              dataType: "json",
+              data: {
+                userUuid: user_uuid,
+              },
+              success: function (message) {
+                console.log(message);
+              }
+            });
+            scannedUrls.push(code.data);
+          }
+        }, 33);
+      });
+      // Not showing vendor prefixes.
+      navigator.getUserMedia({
+        video: true,
+        audio: false
+      }, function (stream) {
+        console.log(stream);
+        video.srcObject = stream;
+
+        // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+        // See crbug.com/110938.
+
+      }, function (e) {
+        console.log('Reeeejected!', e);
+      });
+    </script>
+</body>
 
 </html>
