@@ -18,6 +18,7 @@
     </div>
 
     <script>
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
       var host = window.document.location.host;
       var video = document.querySelector('video');
       var canvas = document.getElementById("canvas");
