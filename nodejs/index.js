@@ -72,6 +72,7 @@ wss.on('connection', function (ws) {
 });
 
 app.get('/notice', function (req, res) {
+  dataModel.reload();
   let missionId = 0;
   if (req.query.missionId) {
     missionId = parseInt(req.query.missionId);

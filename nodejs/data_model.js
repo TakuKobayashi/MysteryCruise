@@ -2,22 +2,28 @@ const fs = require('fs');
 const underscore = require('underscore');
 
 const dataJsonFilePath = '../data.json';
-let commonDataJson = "";
-if (fs.existsSync(dataJsonFilePath)) {
-  commonDataJson = fs.readFileSync(dataJsonFilePath);
-} else {
-  // init
-  commonDataJson = JSON.stringify({
-    missions: [],
-    users: [],
-    messages: [],
-  });
-}
-
-let commonData = JSON.parse(commonDataJson);
+let commonData = {};
+const loadFromJsonFile = function () {
+  let commonDataJson = "";
+  if (fs.existsSync(dataJsonFilePath)) {
+    commonDataJson = fs.readFileSync(dataJsonFilePath);
+  } else {
+    // init
+    commonDataJson = JSON.stringify({
+      missions: [],
+      users: [],
+      messages: [],
+    });
+  }
+  commonData = JSON.parse(commonDataJson);
+};
+loadFromJsonFile();
 
 const DataModel = function () {
   return {
+    reload: function () {
+      loadFromJsonFile();
+    },
     findBy: function (key, args = {}) {
       const argKeys = Object.keys(args);
       return underscore.find(commonData[key], function (cell) {
