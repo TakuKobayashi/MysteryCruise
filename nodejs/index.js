@@ -117,6 +117,14 @@ app.get('/chat', function (req, res) {
   res.render('./chat.ejs');
 });
 
+app.get('/action', function (req, res) {
+  res.render('./action.ejs');
+});
+
+app.get('/play', function (req, res) {
+  res.render('./play.ejs');
+});
+
 app.get('/messages', function (req, res) {
   const page = req.query.page || "0";
   const messages = dataModel.last("messages", 20, parseInt(page));
