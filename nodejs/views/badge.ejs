@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="jsqr/jsQR.js"></script>
 </head>
 
@@ -21,6 +22,18 @@
   var host = window.document.location.host;
   var video = document.querySelector('video');
   var canvas = document.getElementById("canvas");
+
+  var cookie_strings = document.cookie.split(';');
+  var user_uuid_string = cookie_strings.find(function (cookie_string) {
+    var cookie_kv = cookie_string.split('=');
+    return cookie_kv[0] === "user_uuid";
+  });
+  var user_uuid = user_uuid_string.split("=")[1];
+  if (!user_uuid) {
+    user_uuid = localStorage.getItem("user_uuid");
+  }
+  var scannedUrls = [];
+
   video.addEventListener("loadedmetadata", function (e) {
     //canvasにカメラの映像のサイズを設定
     canvas.width = video.videoWidth;
@@ -35,6 +48,20 @@
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const code = jsQR(imageData.data, canvas.width, canvas.height);
       console.log(code);
+      if (code && !scannedUrls.includes(code.data)) {
+        $.ajax({
+          type: "POST",
+          url: "/call_location",
+          dataType: "json",
+          data: {
+            userUuid: user_uuid,
+          },
+          success: function (message) {
+            console.log(message);
+          }
+        });
+        scannedUrls.push(code.data);
+      }
     }, 33);
   });
   // Not showing vendor prefixes.

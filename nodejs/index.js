@@ -133,6 +133,33 @@ app.get('/messages', function (req, res) {
   res.json(messages);
 });
 
+
+app.post('/call_location', function (req, res) {
+  const params = req.body;
+  console.log(params);
+  let userModel = dataModel.findBy("users", {
+    uuid: params.userUuid,
+  });
+  if (userModel) {
+    const messageObj = {
+      "user_uuid": "locationInfo",
+      "text": `${userModel.uuid}さんが食堂のQRCodeを読み込みました!!`,
+      "uuid": uuid()
+    }
+    dataModel.create("messages", messageObj);
+    connections.forEach(function (con, i) {
+      con.send(JSON.stringify(
+        Object.assign(messageObj, {
+          action_name: "message",
+        })
+      ));
+    });
+    res.json(messageObj);
+  } else {
+    res.json({});
+  }
+});
+
 app.post('/sign_in', function (req, res) {
   const user_uuid = req.cookies.user_uuid;
   let userModel = dataModel.findBy("users", {
