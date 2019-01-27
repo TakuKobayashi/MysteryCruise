@@ -43,12 +43,12 @@ const DataModel = function () {
     all: function (key) {
       return commonData[key];
     },
-    last: function (key, count = 1) {
+    last: function (key, count = 1, page = 0) {
       const data = commonData[key];
       if (count === 1) {
         return data[data.length - 1];
       } else {
-        return data.slice(Math.max(0, data.length - 1 - count), data.length - 1);
+        return data.slice(Math.max(0, data.length - 1 - (count * (page + 1))), data.length - 1 - (count * page));
       }
     },
     update: function (key, filterArgs = {}, args = {}) {

@@ -109,11 +109,18 @@ app.get('/', function (req, res) {
   res.render('./index.ejs');
 });
 
+app.get('/badge', function (req, res) {
+  res.render('./badge.ejs');
+});
+
 app.get('/chat', function (req, res) {
-  const messages = dataModel.last("messages", 20);
-  res.render('./chat.ejs', {
-    messages: messages
-  });
+  res.render('./chat.ejs');
+});
+
+app.get('/messages', function (req, res) {
+  const page = req.query.page || "0";
+  const messages = dataModel.last("messages", 20, parseInt(page));
+  res.json(messages);
 });
 
 app.post('/sign_in', function (req, res) {

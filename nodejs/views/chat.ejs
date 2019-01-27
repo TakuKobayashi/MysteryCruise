@@ -84,10 +84,23 @@
              </div>
            </div>`
         );
-
       }
       messages.push(messageObj);
     };
+
+    var loadMessages = function (page = 0) {
+      $.ajax({
+        type: "GET",
+        url: "/messages",
+        dataType: "json",
+        success: function (messages) {
+          for (var message of messages) {
+            appendMessage(message);
+          }
+        }
+      });
+    }
+    loadMessages(0);
 
     for (var i = 0; i < messages.length; ++i) {
       appendMessage(messages[i]);
