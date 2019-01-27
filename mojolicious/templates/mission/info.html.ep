@@ -20,8 +20,10 @@
   <td>
   <form method="POST" class="form-horizontal" action="/mission/publish" style="">
     <div class="form-group">
-      <div class="col-xs-11" style=""><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="内容を入力"></div>
-      <div class="col-cs-1"  ><button type="submit" class="btn btn-danger" style="">即時配信</button></div>
+      <div class="col-xs-10" style="margin-bottom:10px"><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="内容を入力"></div>
+      <div class="col-cs-2"  style="margin-bottom:10px"><button type="submit" class="btn btn-danger" style="">即時配信</button></div>
+      <div class="col-xs-offset-8 col-xs-2" style=""><input id="mission" type="text" name="mission" class="form-control" value="" placeholder=""></div>
+      <div class="col-cs-2"  ><button type="submit" class="btn btn-danger scheduled" style="">予約配信</button></div>
     </div>
   </form>
   </td>
