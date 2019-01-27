@@ -19,6 +19,8 @@ app.use(express.static('public'));
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+app.use("/jsqr", express.static(__dirname + "/node_modules/jsqr/dist/"));
+
 const port = process.env.PORT || 8000;
 
 //wake up http server

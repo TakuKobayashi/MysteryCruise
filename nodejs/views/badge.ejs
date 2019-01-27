@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <script src="jsQR.js"></script>
+  <script src="jsqr/jsQR.js"></script>
 </head>
 
 <body>
@@ -18,6 +18,7 @@
 </div>
 
 <script>
+  var host = window.document.location.host;
   var video = document.querySelector('video');
   var canvas = document.getElementById("canvas");
   video.addEventListener("loadedmetadata", function (e) {
@@ -32,7 +33,7 @@
       //videoタグの描画をコンテキストに描画
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const code = jsQR(imageData, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, canvas.width, canvas.height);
       console.log(code);
     }, 33);
   });
