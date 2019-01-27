@@ -24,22 +24,64 @@
   </tr>
   <tr>
     <td>2</td>
-    <td>user2</td>
-    <td>泥棒</td>
+    <td>Hyde</td>
+    <td>探偵</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>user2</td>
-    <td>泥棒</td>
+    <td>3</td>
+    <td>かすぃわぎ</td>
+    <td>泥棒1</td>
+    <td>死亡</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>拓ちゃん</td>
+    <td>警察2</td>
+    <td>死亡</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>凛然アイデンティティ</td>
+    <td>警察3</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>user2</td>
-    <td>泥棒</td>
+    <td>6</td>
+    <td>おがまき</td>
+    <td>弁護士</td>
+    <td>死亡</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>イトゥー</td>
+    <td>警察4</td>
+    <td>生存</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>CC</td>
+    <td>泥棒2</td>
+    <td>死亡</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>野島さん</td>
+    <td>警察5</td>
+    <td>死亡</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>コターーニ</td>
+    <td>検事</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>

@@ -35,29 +35,36 @@
 <tr style=""><th>ID</th><th>内容</th><th>配信時間</th><th></th><th></th></tr>
   <tr>
     <td>1</td>
-    <td class="mission">泥棒1は今から5分以内に船内の売店にチェックインせよ</td>
-    <td>12:50</td>
+    <td class="mission">12:15よりゲームを開始する。開始までに『遊び方』を見ておくように</td>
+    <td>12:00</td>
     <td>配信済み</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
     <td>2</td>
-    <td class="mission">警察2と泥棒2は今から5分以内に船内の売店にチェックインせよ</td>
-    <td>13:30</td>
-    <td>未配信</td>
+    <td class="mission">それでは、今からミステリークルーズツアーを開始する</td>
+    <td>12:15</td>
+    <td>配信済み</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
     <td>3</td>
-    <td class="mission">警察1と泥棒1は今から5分以内に船内のレストランにチェックインせよ</td>
+    <td class="mission">泥棒1は今から5分以内に船内の売店にチェックインせよ</td>
     <td>14:00</td>
     <td>未配信</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
   <tr>
     <td>4</td>
-    <td class="mission">警察全員は今から10分以内に船内のレストランにチェックインせよ</td>
-    <td>14:30</td>
+    <td class="mission">警察2は３人組を組んで10分以内にレストランにチェックインせよ</td>
+    <td>15:30</td>
+    <td>未配信</td>
+    <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="mission">警察1/警察4/探偵1は今から5分以内に甲板にチェックインせよ</td>
+    <td>17:30</td>
     <td>未配信</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>
