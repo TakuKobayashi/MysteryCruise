@@ -56,7 +56,9 @@
                 userUuid: user_uuid,
               },
               success: function (message) {
-                console.log(message);
+                if (message.uuid) {
+                  alert("位置を共有しました");
+                }
               }
             });
             scannedUrls.push(code.data);
