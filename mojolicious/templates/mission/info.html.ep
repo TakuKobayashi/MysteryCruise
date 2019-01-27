@@ -21,7 +21,7 @@
   <form method="POST" class="form-horizontal" action="/mission/publish" style="">
     <div class="form-group">
       <div class="col-xs-11" style=""><input id="mission" type="text" name="mission" class="form-control" value="" placeholder="内容を入力"></div>
-      <div class="col-cs-1"  ><button type="submit" class="btn btn-danger" style="">配信</button></div>
+      <div class="col-cs-1"  ><button type="submit" class="btn btn-danger" style="">即時配信</button></div>
     </div>
   </form>
   </td>
@@ -29,8 +29,6 @@
 </table>
 
 <h1>指令一覧</h1>
-<div class="col-xs-12" style=""><h4 style="">
-<a href="/"><button type="button" class="btn btn-danger">追加</button></a></h4></div>
 <table class="table">
 <tr style=""><th>ID</th><th>内容</th><th>配信時間</th><th></th><th></th></tr>
   <tr>
