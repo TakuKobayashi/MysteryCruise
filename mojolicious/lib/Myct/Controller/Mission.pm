@@ -37,12 +37,16 @@ sub publish {
     my $json = encode_json $data;
     $path = $path->spurt($json);
 
+    my $error = '';
     eval {
-    my $ua  = Mojo::UserAgent->new;
-    my $res = $ua->get("http://localhost:8000/notice?missionId=$id")->result;
+        my $ua  = Mojo::UserAgent->new;
+        my $res = $ua->get("http://localhost:8000/notice?missionId=$id")->result;
     };
+    if ( $@ ) {
+        $error = $@;
+    }
 
-    $self->flash(msg => "指令を配信しました");
+    $self->flash(msg => "指令を配信しました $error");
     $self->redirect_to('/mission/info');
 }
 
