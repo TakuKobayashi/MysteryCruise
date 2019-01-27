@@ -38,12 +38,19 @@ sub publish {
     $path = $path->spurt($json);
 
     my $error = '';
+    my $ua    = Mojo::UserAgent->new;
+    my $res;
     eval {
-        my $ua  = Mojo::UserAgent->new;
-        my $res = $ua->get("http://localhost:8000/notice?missionId=$id")->result;
+        $res = $ua->get("http://localhost:8000/notice?missionId=$id")->result;
     };
     if ( $@ ) {
         $error = $@;
+    } 
+    elsif ( $res->is_success ) {
+        $error = $res->body;
+    }
+    elsif ( $res->is_error ) {
+        $error = $res->message;
     }
 
     $self->flash(msg => "指令を配信しました $error");
