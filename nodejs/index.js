@@ -79,6 +79,8 @@ app.get('/notice', function (req, res) {
   let missionObj = dataModel.findBy("missions", {
     id: missionId,
   });
+  console.log(missionId);
+  console.log(missionObj);
   if (missionObj && missionObj.is_published == 0) {
     connections.forEach(function (con, i) {
       con.send(JSON.stringify(
