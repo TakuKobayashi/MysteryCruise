@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <script src="jsQR.js"></script>
+</head>
+
+<body>
+
+</body>
+<video autoplay playsinline="true"></video>
+<div style="display:none">
+  <canvas id="canvas"></canvas>
+</div>
+
+<script>
+  var video = document.querySelector('video');
+  var canvas = document.getElementById("canvas");
+  video.addEventListener("loadedmetadata", function (e) {
+    //canvasにカメラの映像のサイズを設定
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    //getContextで描画先を取得
+    var ctx = canvas.getContext("2d");
+    //毎フレームの実行処理
+    setInterval(function (e) {
+      //videoタグの描画をコンテキストに描画
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData, canvas.width, canvas.height);
+      console.log(code);
+    }, 33);
+  });
+  // Not showing vendor prefixes.
+  navigator.getUserMedia({
+    video: true,
+    audio: false
+  }, function (stream) {
+    console.log(stream);
+    video.srcObject = stream;
+
+    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+    // See crbug.com/110938.
+
+  }, function (e) {
+    console.log('Reeeejected!', e);
+  });
+</script>
+
+</html>
