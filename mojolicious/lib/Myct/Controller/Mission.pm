@@ -37,6 +37,7 @@ sub publish {
     my $json = encode_json $data;
     $path = $path->spurt($json);
 
+    $path = $path->touch;
     sleep 1;
 
     my $error = '';
