@@ -17,8 +17,8 @@
 <tr style=""><th>ID</th><th>ユーザ名</th><th>役割</th><th>生死</th><th></th></tr>
   <tr>
     <td>1</td>
-    <td>user1</td>
-    <td>警察</td>
+    <td>万屋の研ちゃん</td>
+    <td>警察1</td>
     <td>生存</td>
     <td><a href="/"><button type="button" class="btn btn-danger">編集</button></a></td>
   </tr>

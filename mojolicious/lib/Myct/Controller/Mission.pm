@@ -37,6 +37,8 @@ sub publish {
     my $json = encode_json $data;
     $path = $path->spurt($json);
 
+    sleep 1;
+
     my $error = '';
     my $ua    = Mojo::UserAgent->new;
     my $res;
